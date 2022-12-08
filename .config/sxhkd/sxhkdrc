@@ -1,0 +1,47 @@
+#--- BSPWM KEYBINDINGS ---#
+
+super + q
+	bspc node -c
+
+super + {_,shift +}{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+super + {_,shift +}{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+super + ctrl + {1-9,0}
+	bspc node -d '^{1-9,10}' --follow
+
+super + f
+	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
+
+super + shift + f
+	bspc node focused.tiled -t fullscreen || bspc node focused.fullscreen -t tiled
+
+super + {_,shift +}Tab
+	bspc {desktop,node} -f last
+
+super + ctrl + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+super + ctrl + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+#--- MEDIA KEYBINDINGS ---#
+
+XF86Audio{Raise,Lower}Volume
+    amixer sset Master {5%+,5%-} unmute
+
+#--- PROGRAMS KEYBINDINGS ---#
+
+super + Return
+	urxvt
+
+super + space
+	rofi -show run
+
+super + e
+	urxvt -e vifm
+
+super + r
+	pkill -USR1 -x sxhkd
